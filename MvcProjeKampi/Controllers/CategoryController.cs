@@ -24,31 +24,6 @@ namespace MvcProjeKampi.Controllers
             var categoryvalues = cm.GetList();
             return View(categoryvalues);
         }
-        [HttpGet]
-        public ActionResult AddCategory()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddCategory(Category p)
-        {
-            //cm.CategoryAddBl(p);
-            CategoryValidator categoryValidator = new CategoryValidator();
-            ValidationResult results = categoryValidator.Validate(p);
-            if (results.IsValid)
-            {
-                cm.CategoryAdd(p);
-                return RedirectToAction("GetCategoryList");
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
-        }
+        
     }
 }
